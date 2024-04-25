@@ -1,5 +1,5 @@
-Console App (CRUD)
-Ado .Net (CRUD)
-Dapper (CRUD)
+Console App
+Ado .Net
+Dapper
  > ORM (Object-relational mapping)
    
