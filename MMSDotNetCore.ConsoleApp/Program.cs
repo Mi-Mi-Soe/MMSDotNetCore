@@ -1,6 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using MMSDotNetCore.ConsoleApp;
-using System.Data;
+﻿using MMSDotNetCore.ConsoleApp;
 
 //Console.WriteLine("Hello, World!");
 
@@ -39,15 +37,17 @@ using System.Data;
 //Ado .Net Read
 //Console.ReadKey();
 
-AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
+//AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.Read();
 //adoDotNetExample.Create("NewTitle", "NewAuthor", "NewContent");
 //adoDotNetExample.Update(3, "Title3", "Author3", "Content3");
 //adoDotNetExample.Delete(1);
-adoDotNetExample.Edit(1);
+//adoDotNetExample.Edit(1);
 //adoDotNetExample.Read();
+//Console.ReadKey();
+
+DapperExample dapperExample = new DapperExample();
+dapperExample.Run();
 Console.ReadKey();
-
-
 
 
