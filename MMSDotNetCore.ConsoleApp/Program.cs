@@ -1,4 +1,4 @@
-﻿using MMSDotNetCore.ConsoleApp;
+﻿using MMSDotNetCore.ConsoleApp.EFCoreExamples;
 
 //Console.WriteLine("Hello, World!");
 

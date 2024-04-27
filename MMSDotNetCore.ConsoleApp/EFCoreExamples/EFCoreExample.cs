@@ -1,4 +1,6 @@
-﻿namespace MMSDotNetCore.ConsoleApp;
+﻿using MMSDotNetCore.ConsoleApp.Dtos;
+
+namespace MMSDotNetCore.ConsoleApp.EFCoreExamples;
 
 public class EFCoreExample
 {

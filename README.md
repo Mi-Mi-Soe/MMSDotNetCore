@@ -1,6 +1,6 @@
-Console App
-Ado .Net
-Dapper
-EF Core
-
+- Console App 
+- Ado .Net
+- Dapper
+- EFCore
+- EFCore
    
