@@ -1,5 +1,6 @@
-Console App
-Ado .Net
-Dapper
- > ORM (Object-relational mapping)
+1.Console App
+2.Ado .Net
+3.Dapper
+4.EF Core
+
    
