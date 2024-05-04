@@ -68,6 +68,20 @@ namespace MMSDotNetCore.Shared
             return item[0];
         }
 
+        public int Execute(string query, params AdoDotNetParameter[]? parameters)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            if (parameters is not null && parameters.Length > 0)
+            {
+                var parameterArray = parameters.Select(x => new SqlParameter(x.Name, x.Value)).ToArray();
+                cmd.Parameters.AddRange(parameterArray);
+            }
+            int result = cmd.ExecuteNonQuery();
+            return result;
+        }
     }
 
     public class AdoDotNetParameter

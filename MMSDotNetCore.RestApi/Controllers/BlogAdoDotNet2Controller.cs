@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using MMSDotNetCore.RestApi.Models;
 using MMSDotNetCore.Shared;
 using System.Data;
+using System.Reflection.Metadata;
 
 namespace MMSDotNetCore.RestApi.Controllers
 {
@@ -13,7 +14,7 @@ namespace MMSDotNetCore.RestApi.Controllers
     {
         private readonly AdoDotNetService _adoDotNetService = new AdoDotNetService(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
 
-        
+
         [HttpGet]
         public IActionResult GetBlogs()
         {
@@ -76,8 +77,8 @@ namespace MMSDotNetCore.RestApi.Controllers
             //    BlogTitle = Convert.ToString(dr["BlogTitle"]),
             //    BlogAuthor = Convert.ToString(dr["BlogAuthor"]),
             //    BlogContent = Convert.ToString(dr["BlogContent"])
-            
-            if(item is null)
+
+            if (item is null)
             {
                 return NotFound("No Data Found");
             }
@@ -95,14 +96,9 @@ namespace MMSDotNetCore.RestApi.Controllers
                 (@BlogTitle,
                 @BlogAuthor,
                 @BlogContent)";
-            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@BlogTitle", blog.BlogTitle);
-            cmd.Parameters.AddWithValue("@BlogAuthor", blog.BlogAuthor);
-            cmd.Parameters.AddWithValue("@BlogContent", blog.BlogContent);
-            int result = cmd.ExecuteNonQuery();
-            connection.Close();
+            int result = _adoDotNetService.Execute(query, new AdoDotNetParameter("@BlogTitle", blog.BlogTitle),
+                                                         new AdoDotNetParameter("@BlogAuthor", blog.BlogAuthor),
+                                                         new AdoDotNetParameter("@BlogContent", blog.BlogContent));
             string message = result > 0 ? "New Blog Creation Successful" : "New Blog Creation Fail";
             return Ok(message);
         }
@@ -115,15 +111,11 @@ namespace MMSDotNetCore.RestApi.Controllers
                             ,[BlogAuthor] = @BlogAuthor
                             ,[BlogContent] = @BlogContent
                             WHERE BlogId=@BlogId";
-            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@BlogId", id);
-            cmd.Parameters.AddWithValue("@BlogTitle", blog.BlogTitle);
-            cmd.Parameters.AddWithValue("@BlogAuthor", blog.BlogAuthor);
-            cmd.Parameters.AddWithValue("@BlogContent", blog.BlogContent);
-            int result = cmd.ExecuteNonQuery();
-            connection.Close();
+            blog.BlogId= id;
+            int result = _adoDotNetService.Execute(query,new AdoDotNetParameter("@BlogId",blog.BlogId),
+                                                         new AdoDotNetParameter("@BlogTitle", blog.BlogTitle),
+                                                         new AdoDotNetParameter("@BlogAuthor", blog.BlogAuthor),
+                                                         new AdoDotNetParameter("@BlogContent", blog.BlogContent));
             string message = result > 0 ? "Blog update successful" : "Blog update fail";
             return Ok(message);
         }
@@ -133,12 +125,7 @@ namespace MMSDotNetCore.RestApi.Controllers
         {
             string query = @"DELETE FROM [dbo].[Tbl_Blog]
       WHERE BlogId=@BlogId";
-            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@BlogId", id);
-            int result = cmd.ExecuteNonQuery();
-            connection.Close();
+            int result = _adoDotNetService.Execute(query, new AdoDotNetParameter("@BlogId", id));
             string message = result > 0 ? "Blog delete successful" : "Blog delete fail";
             return Ok(message);
         }
@@ -168,15 +155,10 @@ namespace MMSDotNetCore.RestApi.Controllers
             string query = $@"UPDATE [dbo].[Tbl_Blog]
                             SET {conditions} 
                             WHERE BlogId=@BlogId";
-            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@BlogId", id);
-            cmd.Parameters.AddWithValue("@BlogTitle", blog.BlogTitle);
-            cmd.Parameters.AddWithValue("@BlogAuthor", blog.BlogAuthor);
-            cmd.Parameters.AddWithValue("@BlogContent", blog.BlogContent);
-            int result = cmd.ExecuteNonQuery();
-            connection.Close();
+            int result = _adoDotNetService.Execute(query, new AdoDotNetParameter("@BlogId", blog.BlogId),
+                                                         new AdoDotNetParameter("@BlogTitle", blog.BlogTitle),
+                                                         new AdoDotNetParameter("@BlogAuthor", blog.BlogAuthor),
+                                                         new AdoDotNetParameter("@BlogContent", blog.BlogContent));
             string message = result > 0 ? "Blog update successful" : "Blog update fail";
             return Ok(message);
         }
