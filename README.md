@@ -4,3 +4,6 @@
 - EFCore
 - Rest Api
 - Rest Api With N-Layer
+- ConsoleApp With HttpClient
+	- Console App - Client (frontend)
+	- Asp .Net Core Web Api - Server (backend)
