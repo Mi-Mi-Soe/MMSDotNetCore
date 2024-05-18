@@ -54,4 +54,29 @@ namespace MMSDotNetCore.PizzaApi.Models
         public decimal TotalPirce { get; set; }
         public string Message { get; set; }
     }
+
+    public class PizzaOrderInvoiceModel
+    {
+        public int PizzaOrderId { get; set; }
+        public string PizzaOrderInvoiceNo { get; set; }
+        public int PizzaId { get; set; }
+        public decimal TotalPrice { get; set; }
+        public string PizzaName { get; set; }
+        public decimal PizzaPrice { get; set; }
+    }
+
+    public class PizzaOrderInvoiceDetailModel
+    {
+        public int PizzaDetailId { get; set; }
+        public string PizzaOrderInvoiceNo { get; set; }
+        public int ExtraId { get; set; }
+        public string ExtraName { get; set; }
+        public decimal ExtraPrice { get; set; }
+    }
+
+    public class PizzaOrderInvoiceResponseModel
+    {
+        public PizzaOrderInvoiceModel PizzaOrderInvoice { get; set; }
+        public List<PizzaOrderInvoiceDetailModel> PizzaOrderInvoiceDetails {  get; set; }
+    }
 }

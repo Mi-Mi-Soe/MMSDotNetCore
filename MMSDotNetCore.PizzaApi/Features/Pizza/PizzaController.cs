@@ -1,14 +1,19 @@
-﻿namespace MMSDotNetCore.PizzaApi.Features.Pizza;
+﻿using MMSDotNetCore.PizzaApi.PizzaQuery;
+using MMSDotNetCore.Shared;
+
+namespace MMSDotNetCore.PizzaApi.Features.Pizza;
 
 [Route("api/[controller]")]
 [ApiController]
 public class PizzaController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly DapperService _dapperService;
 
     public PizzaController()
     {
         _context = new AppDbContext();
+        _dapperService = new DapperService(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
     }
 
     [HttpGet]
@@ -76,6 +81,40 @@ public class PizzaController : ControllerBase
             PizzaInvoiceNo = invoiceNo,
             TotalPirce = totalPrice,
             Message = "Thank you for your order.",
+        };
+        return Ok(model);
+    }
+
+    //[HttpGet("Order/{invoiceNo}")]
+    //public async Task<IActionResult> GetOrderByInvoiceNode(string invoiceNo)
+    //{
+    //    var item = await _context.PizzaOrder.FirstOrDefaultAsync(x=>x.PizzaOrderInvoiceNo == invoiceNo);
+    //    var lst = await _context.PizzaOrderDetail.Where(x=>x.PizzaOrderInvoiceNo == invoiceNo).ToListAsync();
+    //    return Ok(new
+    //    {
+    //        Order = item,
+    //        OrderDetail = lst
+    //    });
+    //} 
+
+    [HttpGet("Order/{invoiceNo}")]
+    public async Task<IActionResult> GetOrderByInvoiceNode(string invoiceNo)
+    {
+        var item = _dapperService.QueryFirstOrDefault<PizzaOrderInvoiceModel>
+            (
+            PizzaQuerys.PizzaOrderQuery,
+            new { PizzaOrderInvoiceNo = invoiceNo }
+            );
+        var lst = _dapperService.Query<PizzaOrderInvoiceDetailModel>
+            (
+            PizzaQuerys.PizzaOrderDetailQuery,
+            new { PizzaOrderInvoiceNo = invoiceNo }
+            );
+
+        var model = new PizzaOrderInvoiceResponseModel
+        {
+            PizzaOrderInvoice = item,
+            PizzaOrderInvoiceDetails = lst
         };
         return Ok(model);
     }
