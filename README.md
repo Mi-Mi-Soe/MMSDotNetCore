@@ -7,4 +7,5 @@
 - ConsoleApp With HttpClient
 	- Console App - Client (frontend)
 	- Asp .Net Core Web Api - Server (backend)
--Api using query with Dapper service
+- Api using query with Dapper service (Pizza Order Mini Api)
+- ConsoleApp With Refit
