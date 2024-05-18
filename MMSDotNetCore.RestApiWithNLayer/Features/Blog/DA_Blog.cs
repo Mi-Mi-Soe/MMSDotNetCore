@@ -5,7 +5,7 @@ namespace MMSDotNetCore.RestApiWithNLayer.Features.Blog
 {
     public class DA_Blog
     {
-        public readonly AppDbContext _context;
+        private readonly AppDbContext _context;
 
         public DA_Blog()
         {
