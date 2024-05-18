@@ -22,9 +22,7 @@ namespace MMSDotNetCore.WindowFormApp
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            txtTitle.Clear();
-            txtAuthor.Clear();
-            txtContent.Clear();
+            ClearControls();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -32,16 +30,26 @@ namespace MMSDotNetCore.WindowFormApp
             try
             {
                 BlogModel blog = new BlogModel();
-                blog.BlogTitle = txtTitle.Text;
-                blog.BlogAuthor = txtAuthor.Text;
-                blog.BlogContent = txtContent.Text;
+                blog.BlogTitle = txtTitle.Text.Trim(); // remove space front and back of text
+                blog.BlogAuthor = txtAuthor.Text.Trim();
+                blog.BlogContent = txtContent.Text.Trim();
                 int result = _dapperService.Execute(BlogQuery.BlogCreate, blog);
-                string message = result>0?"Blog creation successful":"Blog creation fail";
-                MessageBox.Show(message,"Blog",MessageBoxButtons.OK,result>0?MessageBoxIcon.Information:MessageBoxIcon.Error);
-            }catch(Exception ex)
+                string message = result > 0 ? "Blog creation successful" : "Blog creation fail";
+                MessageBox.Show(message, "Blog", MessageBoxButtons.OK, result > 0 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                if (result > 0)
+                    ClearControls();
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void ClearControls()
+        {
+            txtTitle.Clear();
+            txtAuthor.Clear();
+            txtContent.Clear();
         }
     }
 }

@@ -9,3 +9,4 @@
 	- Asp .Net Core Web Api - Server (backend)
 - Api using query with Dapper service (Pizza Order Mini Api)
 - ConsoleApp With Refit
+- Window Form App
