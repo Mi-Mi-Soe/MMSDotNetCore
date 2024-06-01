@@ -57,6 +57,7 @@
             // 
             // colID
             // 
+            colID.DataPropertyName = "BlogId";
             colID.HeaderText = "ID";
             colID.MinimumWidth = 8;
             colID.Name = "colID";

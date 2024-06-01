@@ -37,6 +37,7 @@
             btnCancel = new Button();
             btnSave = new Button();
             label4 = new Label();
+            btnUpdate = new Button();
             SuspendLayout();
             // 
             // txtTitle
@@ -90,16 +91,16 @@
             // 
             btnCancel.Location = new Point(276, 232);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(114, 37);
+            btnCancel.Size = new Size(87, 37);
             btnCancel.TabIndex = 8;
             btnCancel.Text = "Cancel";
             btnCancel.Click += btnCancel_Click;
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(426, 235);
+            btnSave.Location = new Point(369, 232);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(112, 34);
+            btnSave.Size = new Size(92, 37);
             btnSave.TabIndex = 7;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
@@ -114,11 +115,22 @@
             label4.TabIndex = 11;
             label4.Text = "Title :";
             // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(369, 232);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(102, 37);
+            btnUpdate.TabIndex = 12;
+            btnUpdate.Text = "Update";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
+            // 
             // FrmBlog
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnUpdate);
             Controls.Add(label4);
             Controls.Add(btnSave);
             Controls.Add(btnCancel);
@@ -147,5 +159,6 @@
         private Button btnCancel;
         private Button btnSave;
         private Label label4;
+        private Button btnUpdate;
     }
 }

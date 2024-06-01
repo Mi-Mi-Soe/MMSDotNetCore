@@ -22,5 +22,20 @@ namespace MMSDotNetCore.WindowFormApp.Querys
                             ,[BlogAuthor]
                             ,[BlogContent]
                             FROM [dbo].[Tbl_Blog]";
+
+        public static string BlogDelete { get; } = @"DELETE FROM [dbo].[Tbl_Blog]
+                             WHERE BlogId=@BlogId";
+
+        public static string BlogEdit { get; } = @"SELECT [BlogId]
+                            ,[BlogTitle]
+                            ,[BlogAuthor]
+                            ,[BlogContent]
+                            FROM [dbo].[Tbl_Blog] WHERE BlogId=@BlogId";
+
+        public static string BlogUpdate { get; } = @"UPDATE [dbo].[Tbl_Blog]
+                              SET [BlogTitle] = @BlogTitle
+                             ,[BlogAuthor] = @BlogAuthor
+                             ,[BlogContent] = @BlogContent
+                             WHERE BlogId=@BlogId";
     }
 }
