@@ -13,8 +13,14 @@ namespace MMSDotNetCore.WindowFormApp.Querys
                             [BlogAuthor],
                             [BlogContent])
                             VALUES
-                (@BlogTitle,
-                @BlogAuthor,
-                @BlogContent)";
+                            (@BlogTitle,
+                            @BlogAuthor,
+                            @BlogContent)";
+
+        public static string BlogRead { get; } = @"SELECT [BlogId]
+                            ,[BlogTitle]
+                            ,[BlogAuthor]
+                            ,[BlogContent]
+                            FROM [dbo].[Tbl_Blog]";
     }
 }
