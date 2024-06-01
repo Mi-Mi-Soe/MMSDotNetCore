@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MMSDotNetCore.NLayer.BusinessLogic\MMSDotNetCore.NLayer.BusinessLogic.csproj" />
+    <ProjectReference Include="..\MMSDotNetCore.NLayer.DataAccess\MMSDotNetCore.NLayer.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>
