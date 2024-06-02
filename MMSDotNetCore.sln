@@ -28,13 +28,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMSDotNetCore.ConsoleAppRef
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMSDotNetCore.WindowFormApp", "MMSDotNetCore.WindowFormApp\MMSDotNetCore.WindowFormApp.csproj", "{3B760F5C-9169-40DD-AE66-2AD10DC2C65E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsAppSqlInjection", "WinFormsAppSqlInjection\WinFormsAppSqlInjection.csproj", "{D4C5DB28-08E4-4B67-A59F-D7B7B9D61DB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMSDotNetCore.WindowFormAppSqlInjecrion", "WinFormsAppSqlInjection\MMSDotNetCore.WindowFormAppSqlInjecrion.csproj", "{D4C5DB28-08E4-4B67-A59F-D7B7B9D61DB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMSDotNetCore.NLayer.UI", "MMSDotNetCore.ConsoleAppNLayer\MMSDotNetCore.NLayer.UI.csproj", "{F1C68307-47A3-4134-B848-EAEFF5CF7BDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMSDotNetCore.NLayer.UI", "MMSDotNetCore.ConsoleAppNLayer\MMSDotNetCore.NLayer.UI.csproj", "{F1C68307-47A3-4134-B848-EAEFF5CF7BDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMSDotNetCore.NLayer.BusinessLogic", "MMSDotNetCore.NLayer.BusinessLogic\MMSDotNetCore.NLayer.BusinessLogic.csproj", "{8F836193-3A96-442F-BD31-6EC52647F4C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMSDotNetCore.NLayer.BusinessLogic", "MMSDotNetCore.NLayer.BusinessLogic\MMSDotNetCore.NLayer.BusinessLogic.csproj", "{8F836193-3A96-442F-BD31-6EC52647F4C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMSDotNetCore.NLayer.DataAccess", "MMSDotNetCore.NLayer.DataAccess\MMSDotNetCore.NLayer.DataAccess.csproj", "{E3386395-177C-4976-8986-89E2223C6DDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMSDotNetCore.NLayer.DataAccess", "MMSDotNetCore.NLayer.DataAccess\MMSDotNetCore.NLayer.DataAccess.csproj", "{E3386395-177C-4976-8986-89E2223C6DDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
