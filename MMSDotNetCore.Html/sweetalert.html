@@ -2,53 +2,63 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        githubprofile();
-        function githubprofile(){
-            Swal.fire({
-          title: "Submit your Github username",
-          input: "text",
-          inputAttributes: {
-            autocapitalize: "off"
-          },
-          showCancelButton: true,
-          confirmButtonText: "Look up",
-          showLoaderOnConfirm: true,
-          preConfirm: async (login) => {
-            try {
-              const githubUrl = `
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    githubprofile();
+    function githubprofile() {
+      let imageUrl;
+      Swal.fire({
+        title: "Submit your Github username",
+        input: "text",
+        inputAttributes: {
+          autocapitalize: "off"
+        },
+        showCancelButton: true,
+        confirmButtonText: "Look up",
+        showLoaderOnConfirm: true,
+        preConfirm: async (login) => {
+          try {
+            const githubUrl = `
                 https://api.github.com/users/${login}
               `;
-              const response = await fetch(githubUrl);
-              if (!response.ok) {
-                return Swal.showValidationMessage(`
+            const response = await fetch(githubUrl);
+            if (!response.ok) {
+              return Swal.showValidationMessage(`
                   ${JSON.stringify(await response.json())}
                 `);
-              }
-              return response.json();
-            } catch (error) {
-              Swal.showValidationMessage(`
+            }
+            return response.json();
+          } catch (error) {
+            Swal.showValidationMessage(`
                 Request failed: ${error}
               `);
-            }
-          },
-          allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire({
-              title: `${result.value.login}'s avatar`,
-              imageUrl: result.value.avatar_url
-            });
           }
-        });
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: `${result.value.login}'s avatar`,
+            imageUrl: result.value.avatar_url,
+
+          }).then(() => {
+            console.log(result.value.avatar_url);
+            document.body.style.backgroundImage = `url(${result.value.avatar_url})`;
+            document.body.style.backgroundSize = 'auto';
+            document.body.style.backgroundPosition = 'center';
+            document.body.style.backgroundRepeat = 'no-repeat';
+          });
         }
-        </script>
+
+      });
+    }
+  </script>
 </body>
+
 </html>
