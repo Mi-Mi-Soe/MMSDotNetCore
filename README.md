@@ -20,4 +20,8 @@
   ![Alt text](https://www.hostinger.co.uk/tutorials/wp-content/uploads/sites/2/2019/01/how-does-a-CDN-work-1.png)
 
 - [x] jQuery Plugins
-	- [SweetAlert](https://sweetalert2.github.io)
+	- [x] [SweetAlert](https://sweetalert2.github.io)
+	- [x] [Notiflix(Notify,Report,Confirm,Loading,Block)](https://notiflix.github.io)
+	- [x] [DataTables](https://datatables.net)
+		- [ ] (https://datatables.net/examples/index)
+		- [ ] (https://datatables.net/download/)
