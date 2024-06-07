@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/src/notiflix.min.css">
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/dist/notiflix-aio-3.2.7.min.js"></script>
+    <script>
+        Notiflix.Confirm.show(
+            'Notiflix Confirm',
+            'Do you agree with me?',
+            'Yes',
+            'No',
+            function okCb() {
+                alert('Thank you.');
+            },
+            function cancelCb() {
+                alert('If you say so...');
+            },
+            {
+            },
+        );
+    </script>
+</body>
+
+</html>
