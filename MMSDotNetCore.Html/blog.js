@@ -1,9 +1,38 @@
 const tblBlog = "blogs";
-let blogId=null;
+let blogId = null;
 getTables();
+//testConfirmMessage();
 //createBlogs();
 //updateBlog("4ea2b691-f82f-44fc-a43f-a7a5a6ed256c","lisa","lisa","lisa")
 //deleteBlog("06ac875f-31c4-489b-8f2d-6376da9e1063");
+function testConfirmMessage(){
+    let confirmMessage = new Promise(function(success, error) {
+        Swal.fire({
+            title: "Confirm",
+            text: "Are you sure you want to delete!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) success();
+            else error();
+            
+        });
+        
+        });
+        
+        confirmMessage.then(
+          function(value) {
+             successMessage('Deleting successful');
+          },
+          function(error) {
+            errorMessage('Error');
+           }
+        );
+    
+}
 
 function readBlogs() {
     let lst = localStorage.getBlogs();
@@ -52,6 +81,9 @@ function updateBlog(id, title, author, content) {
 }
 
 function deleteBlog(id) {
+    let result = confirm("Are you sure you want to delete");
+    if(!result) return;
+
     let lst = getBlogs();
     const items = lst.filter(x => x.id === id);
     console.log(items);
@@ -66,6 +98,69 @@ function deleteBlog(id) {
     console.log('Deleting successful');
     successMessage('Deleting successful');
     getTables();
+}
+
+function deleteBlogWithSweetalert(id) { 
+    Swal.fire({
+        title: "Confirm",
+        text: "Are you sure you want to delete!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (!result.isConfirmed) return;
+        let lst = getBlogs();
+        const items = lst.filter(x => x.id === id);
+        console.log(items);
+        if (items.length == 0) {
+            console.log("No data found");
+            errorMessage("No data found");
+            return;
+        }
+        lst = lst.filter(x => x.id !== id);
+        const json = JSON.stringify(lst);
+        localStorage.setItem(tblBlog, json);
+        console.log('Deleting successful');
+        successMessage('Deleting successful');
+        getTables();
+    });
+}
+
+function deleteBlogWithPromise(id) { 
+    testConfirmMessageBox("Are you sure you want to delete!").then(
+      function(value) {
+        let lst = getBlogs();
+        const items = lst.filter(x => x.id === id);
+        console.log(items);
+        if (items.length == 0) {
+            console.log("No data found");
+            errorMessage("No data found");
+            return;
+        }
+        lst = lst.filter(x => x.id !== id);
+        const json = JSON.stringify(lst);
+        localStorage.setItem(tblBlog, json);
+        console.log('Deleting successful');
+        successMessage('Deleting successful');
+        getTables();
+         successMessage('Deleting successful');
+      },
+      function(error) {
+        errorMessage('Error');
+       }
+    );
+    // Swal.fire({
+    //     title: "Confirm",
+    //     text: "Are you sure you want to delete!",
+    //     icon: "warning",
+    //     showCancelButton: true,
+    //     confirmButtonColor: "#3085d6",
+    //     cancelButtonColor: "#d33",
+    //     confirmButtonText: "Yes, delete it!"
+    // }).then((result) => {
+    //     if (!result.isConfirmed) return;
 }
 
 function editBlog(id) {
@@ -96,11 +191,7 @@ function getBlogs() {
     return lst;
 }
 
-function uuidv4() {
-    return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
-        (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
-    );
-}
+
 
 $('#btnCancel').click(function () {
     clearControl();
@@ -129,14 +220,6 @@ function clearControl() {
     $("#txtTitle").focus();
 }
 
-function successMessage(message) {
-    alert(message);
-}
-
-function errorMessage(message) {
-    alert(message);
-}
-
 function getTables() {
     let lst = getBlogs();
     let count = 0;
@@ -145,7 +228,7 @@ function getTables() {
         const htmlRow = `
         <tr>
         <th scope="row">${++count}</th>
-        <td><button type="button" class="btn btn-danger" onclick="deleteBlog('${item.id}')">Delete</button></td>
+        <td><button type="button" class="btn btn-danger" onclick="deleteBlogWithPromise('${item.id}')">Delete</button></td>
         <td><button type="button" class="btn btn-success" onclick="editBlog('${item.id}')">Edit</button></td>
         <td>${item.title}</td>
         <td>${item.author}</td>
