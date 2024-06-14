@@ -1,13 +1,19 @@
 ﻿using Dapper;
-using Microsoft.Data.SqlClient;
 using MMSDotNetCore.ConsoleApp.Dtos;
-using MMSDotNetCore.ConsoleApp.Services;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace MMSDotNetCore.ConsoleApp.DapperExamples;
 
 internal class DapperExample
 {
+    private readonly SqlConnectionStringBuilder _connectionStringBuilder;
+
+    public DapperExample(SqlConnectionStringBuilder connectionStringBuilder)
+    {
+        _connectionStringBuilder = connectionStringBuilder;
+    }
+
     public void Run()
     {
         Read();
@@ -20,7 +26,7 @@ internal class DapperExample
 
     private void Read()
     {
-        using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        using IDbConnection db = new SqlConnection(_connectionStringBuilder.ConnectionString);
         List<BlogDto> lst = db.Query<BlogDto>("select * from Tbl_Blog").ToList();
         foreach (BlogDto item in lst)
         {
@@ -34,7 +40,7 @@ internal class DapperExample
 
     private void Edit(int id)
     {
-        using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        using IDbConnection db = new SqlConnection(_connectionStringBuilder.ConnectionString);
         var item = db.Query("select * from Tbl_Blog where BlogId=@BlogId", new BlogDto
         {
             BlogId = id
@@ -60,7 +66,7 @@ internal class DapperExample
             BlogAuthor = author,
             BlogContent = content
         };
-        using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        using IDbConnection db = new SqlConnection(_connectionStringBuilder.ConnectionString);
         string query = @"INSERT INTO [dbo].[Tbl_Blog]
                             ([BlogTitle],
                             [BlogAuthor],
@@ -83,7 +89,7 @@ internal class DapperExample
             BlogAuthor = author,
             BlogContent = content
         };
-        using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        using IDbConnection db = new SqlConnection(_connectionStringBuilder.ConnectionString);
         string query = @"UPDATE [dbo].[Tbl_Blog]
                             SET [BlogTitle] = @BlogTitle
                             ,[BlogAuthor] = @BlogAuthor
@@ -100,7 +106,7 @@ internal class DapperExample
         {
             BlogId = id,
         };
-        using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        using IDbConnection db = new SqlConnection(_connectionStringBuilder.ConnectionString);
         string query = @"DELETE FROM [dbo].[Tbl_Blog]
       WHERE BlogId=@BlogId";
         var result = db.Execute(query, blogData);

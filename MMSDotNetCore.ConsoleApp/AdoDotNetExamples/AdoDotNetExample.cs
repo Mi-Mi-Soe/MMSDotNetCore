@@ -1,18 +1,25 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Data;
+﻿using System.Data;
+using System.Data.SqlClient;
 
 namespace MMSDotNetCore.ConsoleApp.AdoDotNetExamples;
 
 public class AdoDotNetExample
 {
-    public readonly SqlConnectionStringBuilder _stringBuilder = new SqlConnectionStringBuilder()
+    //public readonly SqlConnectionStringBuilder _stringBuilder = new SqlConnectionStringBuilder()
+    //{
+    //    DataSource = ".",
+    //    InitialCatalog = "DotNetTrainingBatch4",
+    //    UserID = "sa",
+    //    Password = "sa@123",
+    //    TrustServerCertificate = true
+    //};
+
+    private readonly SqlConnectionStringBuilder _stringBuilder;
+
+    public AdoDotNetExample(SqlConnectionStringBuilder stringBuilder)
     {
-        DataSource = ".",
-        InitialCatalog = "DotNetTrainingBatch4",
-        UserID = "sa",
-        Password = "sa@123",
-        TrustServerCertificate = true
-    };
+        _stringBuilder = stringBuilder;
+    }
 
     public void Read()
     {

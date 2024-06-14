@@ -1,4 +1,10 @@
-﻿using MMSDotNetCore.ConsoleApp.EFCoreExamples;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using MMSDotNetCore.ConsoleApp.AdoDotNetExamples;
+using MMSDotNetCore.ConsoleApp.DapperExamples;
+using MMSDotNetCore.ConsoleApp.EFCoreExamples;
+using MMSDotNetCore.ConsoleApp.Services;
+using System.Data.SqlClient;
 
 //Console.WriteLine("Hello, World!");
 
@@ -50,6 +56,33 @@
 //dapperExample.Run();
 //Console.ReadKey();
 
-EFCoreExample eFCoreExample = new EFCoreExample();
+//EFCoreExample eFCoreExample = new EFCoreExample();
+//eFCoreExample.Run();
+//Console.ReadKey();
+
+var connectionString = ConnectionStrings.SqlConnectionStringBuilder.ConnectionString;
+var connectionStringBuilder = new SqlConnectionStringBuilder(connectionString);
+var serviceProvider = new ServiceCollection()
+    .AddScoped(n=>new DapperExample(connectionStringBuilder))
+    .AddScoped(n=>new AdoDotNetExample(connectionStringBuilder))
+    .AddDbContext<AppDbContext>(options =>
+    {
+        options.UseSqlServer(connectionString);
+    })
+    .AddScoped<EFCoreExample>()
+    .BuildServiceProvider();
+
+AppDbContext db = serviceProvider.GetRequiredService<AppDbContext>();
+EFCoreExample eFCoreExample = new EFCoreExample(db);
 eFCoreExample.Run();
+
+//EFCoreExample eFCoreExample = new EFCoreExample();
+//eFCoreExample.Run();
+
+//AdoDotNetExample adoDotNetExample = serviceProvider.GetRequiredService<AdoDotNetExample>();
+//adoDotNetExample.Read();
+
+//DapperExample dapperExample = serviceProvider.GetRequiredService<DapperExample>();
+//dapperExample.Run();
+//Console.ReadKey();
 Console.ReadKey();

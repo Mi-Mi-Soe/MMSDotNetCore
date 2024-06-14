@@ -25,3 +25,7 @@
 	- [x] [DataTables](https://datatables.net)
 		- [ ] (https://datatables.net/examples/index)
 		- [ ] (https://datatables.net/download/)
+
+
+- Dependency Injection
+- Console App Dependency Injection

@@ -4,7 +4,13 @@ namespace MMSDotNetCore.ConsoleApp.EFCoreExamples;
 
 public class EFCoreExample
 {
-    private readonly AppDbContext db = new AppDbContext();
+    //private readonly AppDbContext db = new AppDbContext();
+    private readonly AppDbContext _db;
+
+    public EFCoreExample(AppDbContext db)
+    {
+        _db = db;
+    }
 
     public void Run()
     {
@@ -18,7 +24,7 @@ public class EFCoreExample
 
     private void Read()
     {
-        var lst = db.Blogs.ToList();
+        var lst = _db.Blogs.ToList();
         foreach (BlogDto item in lst)
         {
             Console.WriteLine(item.BlogId);
@@ -31,7 +37,7 @@ public class EFCoreExample
 
     private void Edit(int id)
     {
-        var item = db.Blogs.FirstOrDefault(x => x.BlogId == id);
+        var item = _db.Blogs.FirstOrDefault(x => x.BlogId == id);
         if (item is null)
         {
             Console.WriteLine("No Data Found");
@@ -53,15 +59,15 @@ public class EFCoreExample
             BlogAuthor = author,
             BlogContent = content
         };
-        db.Blogs.Add(item);
-        var result = db.SaveChanges();
+        _db.Blogs.Add(item);
+        var result = _db.SaveChanges();
         string message = result > 0 ? "New Blog Creation Successful" : "New Blog Creation Fail";
         Console.WriteLine(message);
     }
 
     private void Update(int id, string title, string author, string content)
     {
-        var item = db.Blogs.FirstOrDefault(x => x.BlogId == id);
+        var item = _db.Blogs.FirstOrDefault(x => x.BlogId == id);
         if (item is null)
         {
             Console.WriteLine("No Data Found.");
@@ -70,21 +76,21 @@ public class EFCoreExample
         item.BlogTitle = title;
         item.BlogAuthor = author;
         item.BlogContent = content;
-        int result = db.SaveChanges();
+        int result = _db.SaveChanges();
         string message = result > 0 ? "Blog update successful" : "Blog update fail";
         Console.WriteLine(message);
     }
 
     private void Delete(int id)
     {
-        var item = db.Blogs.FirstOrDefault(x => x.BlogId == id);
+        var item = _db.Blogs.FirstOrDefault(x => x.BlogId == id);
         if (item is null)
         {
             Console.WriteLine("No Data Found.");
             return;
         }
-        db.Blogs.Remove(item);
-        int result = db.SaveChanges();
+        _db.Blogs.Remove(item);
+        int result = _db.SaveChanges();
         string message = result > 0 ? "Blog delete successful" : "Blog delete fail";
         Console.WriteLine(message);
     }
