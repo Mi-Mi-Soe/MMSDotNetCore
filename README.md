@@ -25,7 +25,19 @@
 	- [x] [DataTables](https://datatables.net)
 		- [ ] (https://datatables.net/examples/index)
 		- [ ] (https://datatables.net/download/)
-
+    - [x] [DatePicker](https://fengyuanchen.github.io/datepicker/)
+	    - [ ] (https://github.com/fengyuanchen/datepicker/blob/master/README.md)
+		- [ ] (https://github.com/fengyuanchen/datepicker/releases/tag/v1.0.10)
+    - [x] [LaddaButton](https://msurguy.github.io/ladda-bootstrap/)
+	    - [ ] (https://cdnjs.com/libraries/ladda-bootstrap)
+		- [ ] (https://github.com/msurguy/ladda-bootstrap)
+	- [x] [ICheck](https://bantikyan.github.io/icheck-bootstrap/)
+	    - [ ] (https://cdnjs.com/libraries/icheck-bootstrap)
+		- [ ] (https://github.com/bantikyan/icheck-bootstrap)
+		- [ ] (https://penguin-arts.com/how-to-check-if-a-checkbox-is-checked-using-icheck-library/)
+	- [x] [Toast](https://apvarun.github.io/toastify-js/)
+	    - [ ] (https://github.com/apvarun/toastify-js/blob/master/README.md)
 
 - Dependency Injection
 - Console App Dependency Injection
+  ![Alt text](https://www.ezzylearning.net/wp-content/uploads/ASP.NET-Core-Service-Lifetime-Infographic.png)
