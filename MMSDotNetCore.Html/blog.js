@@ -1,6 +1,7 @@
 const tblBlog = "blogs";
 let blogId = null;
 getTables();
+getBlogs();
 //testConfirmMessage();
 //createBlogs();
 //updateBlog("4ea2b691-f82f-44fc-a43f-a7a5a6ed256c","lisa","lisa","lisa")
