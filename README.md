@@ -41,3 +41,10 @@
 - Dependency Injection
 - Console App Dependency Injection
   ![Alt text](https://www.ezzylearning.net/wp-content/uploads/ASP.NET-Core-Service-Lifetime-Infographic.png)
+- Minimal Api
+- MVC
+    - Model
+	- View 
+	- Controller
+	Controller => Processing => View(Model == Dto) => UI (cshtml)
+   
