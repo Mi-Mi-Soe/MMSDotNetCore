@@ -4,13 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Date Picker</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fengyuanchen/datepicker@0.6.5/dist/datepicker.min.css"
         integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous">
 </head>
+<style>
+    .input-container i {
+        position: absolute;
+    }
+</style>
 
 <body>
-    <input data-toggle="datepicker">
+    <div class="input-container">
+        <input id="dateId" class="form-control" data-toggle="datepicker">
+        <i class="fa fa-calendar" id="dateIcon" aria-hidden="true"></i></input>
+    </div>
     <button type="button" class="btn btn-danger" data-name="Cancel" id="btnCancel">Cancel</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
@@ -18,16 +27,19 @@
     <script src="https://cdn.jsdelivr.net/npm/@fengyuanchen/datepicker@0.6.5/dist/datepicker.min.js"
         integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function () {
+        $(function () {
             $('[data-toggle="datepicker"]').datepicker({
                 autoHide: true,
                 autoPick: true,
                 format: 'dd-mm-yyyy'
             });
-        });
 
+            $('.date-icon').on('click', function () {
+                $('#dateId').focus();
+            })
+        });
         //data attribute
-        $('#btnCancel').click(function(){
+        $('#btnCancel').click(function () {
             let btnName = $(this).data("name");
             console.log(btnName);
         })
